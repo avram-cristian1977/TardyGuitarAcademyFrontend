@@ -61,7 +61,7 @@ const Music = () => {
           title: "Astatine Flux (Good Reaction Gone Bad)",
           src: "/audio/Elements/2-Astatine-Flux.mp3",
         },
-         {
+        {
           title: "Aeriform Silver (WIP)",
           src: "/audio/Elements/3-Aeriform-Silver.mp3",
         },
@@ -74,7 +74,7 @@ const Music = () => {
       ...track,
       albumTitle: album.title,
       albumCover: album.cover,
-    }))
+    })),
   );
 
   const audioRef = useRef(null);
@@ -121,36 +121,18 @@ const Music = () => {
       }
     };
 
-    audio.addEventListener(
-      "timeupdate",
-      handleTimeUpdate
-    );
+    audio.addEventListener("timeupdate", handleTimeUpdate);
 
-    audio.addEventListener(
-      "loadedmetadata",
-      handleLoadedMetadata
-    );
+    audio.addEventListener("loadedmetadata", handleLoadedMetadata);
 
-    audio.addEventListener(
-      "ended",
-      handleEnded
-    );
+    audio.addEventListener("ended", handleEnded);
 
     return () => {
-      audio.removeEventListener(
-        "timeupdate",
-        handleTimeUpdate
-      );
+      audio.removeEventListener("timeupdate", handleTimeUpdate);
 
-      audio.removeEventListener(
-        "loadedmetadata",
-        handleLoadedMetadata
-      );
+      audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
 
-      audio.removeEventListener(
-        "ended",
-        handleEnded
-      );
+      audio.removeEventListener("ended", handleEnded);
     };
   }, [currentTrackIndex, allTracks.length]);
 
@@ -179,9 +161,7 @@ const Music = () => {
 
   const playPrevious = () => {
     if (currentTrackIndex > 0) {
-      setCurrentTrackIndex(
-        (current) => current - 1
-      );
+      setCurrentTrackIndex((current) => current - 1);
       setCurrentTime(0);
       setIsPlaying(true);
     }
@@ -189,9 +169,7 @@ const Music = () => {
 
   const playNext = () => {
     if (currentTrackIndex < allTracks.length - 1) {
-      setCurrentTrackIndex(
-        (current) => current + 1
-      );
+      setCurrentTrackIndex((current) => current + 1);
       setCurrentTime(0);
       setIsPlaying(true);
     }
@@ -214,175 +192,107 @@ const Music = () => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
 
-    return `${minutes}:${seconds
-      .toString()
-      .padStart(2, "0")}`;
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
   return (
     <section
       id="music"
       className="section dark-section music-section"
-      style={{paddingTop:'50px'}}
+      style={{ paddingTop: "50px" }}
     >
       <div className="section-inner">
-
         {/* HEADER */}
 
         <div className="music-header">
+          <p className="eyebrow">MUZICA MEA</p>
 
-          <p className="eyebrow">
-            MUZICA MEA
-          </p>
-
-          <h2>
-            Albume & compoziții
-          </h2>
+          <h2>Albume & compoziții</h2>
 
           <p>
-            Descoperă o parte din parcursul meu muzical și proiectele mele personale.
+            Descoperă o parte din parcursul meu muzical și proiectele mele
+            personale.
           </p>
-
         </div>
 
         {/* ALBUMS */}
 
         <div className="albums-container">
-
           {albums.map((album) => (
-            <article
-              className="album-card"
-              key={album.title}
-            >
-
+            <article className="album-card" key={album.title}>
               <div className="album-cover">
-
-                <img
-                  src={album.cover}
-                  alt={`${album.title} - album cover`}
-                />
-
+                <img src={album.cover} alt={`${album.title} - album cover`} />
               </div>
 
               <div className="album-content">
-
                 <div className="album-heading">
-
-                  <span className="album-number">
-                    {album.number}
-                  </span>
+                  <span className="album-number">{album.number}</span>
 
                   <div>
-                    <h3>
-                      {album.title}
-                    </h3>
+                    <h3>{album.title}</h3>
 
-                    <p>
-                      {album.type}
-                    </p>
+                    <p>{album.type}</p>
                   </div>
-
                 </div>
 
                 <div className="track-list">
+                  {album.tracks.map((track) => {
+                    const globalIndex = allTracks.findIndex(
+                      (item) => item.src === track.src,
+                    );
 
-                  {album.tracks.map(
-                    (track) => {
-                      const globalIndex =
-                        allTracks.findIndex(
-                          (item) =>
-                            item.src === track.src
-                        );
+                    const isCurrent = globalIndex === currentTrackIndex;
 
-                      const isCurrent =
-                        globalIndex ===
-                        currentTrackIndex;
+                    return (
+                      <button
+                        className={`track-item ${isCurrent ? "active" : ""}`}
+                        key={track.src}
+                        onClick={() => selectTrack(globalIndex)}
+                      >
+                        <span className="track-index">
+                          {String(album.tracks.indexOf(track) + 1).padStart(
+                            2,
+                            "0",
+                          )}
+                        </span>
 
-                      return (
-                        <button
-                          className={`track-item ${
-                            isCurrent
-                              ? "active"
-                              : ""
-                          }`}
-                          key={track.src}
-                          onClick={() =>
-                            selectTrack(
-                              globalIndex
-                            )
-                          }
-                        >
+                        <span className="track-play">
+                          {isCurrent && isPlaying ? (
+                            <>
+                              <span />
+                              <span />
+                              <span />
+                            </>
+                          ) : (
+                            "▶"
+                          )}
+                        </span>
 
-                          <span className="track-index">
-                            {String(
-                              album.tracks.indexOf(
-                                track
-                              ) + 1
-                            ).padStart(2, "0")}
-                          </span>
-
-                          <span className="track-play">
-
-                            {isCurrent &&
-                            isPlaying ? (
-                              <>
-                                <span />
-                                <span />
-                                <span />
-                              </>
-                            ) : (
-                              "▶"
-                            )}
-
-                          </span>
-
-                          <span className="track-title">
-                            {track.title}
-                          </span>
-
-                        </button>
-                      );
-                    }
-                  )}
-
+                        <span className="track-title">{track.title}</span>
+                      </button>
+                    );
+                  })}
                 </div>
-
               </div>
-
             </article>
           ))}
-
         </div>
 
         {/* PLAYER */}
 
         <div className="music-player">
-
-          <audio
-            ref={audioRef}
-            preload="metadata"
-          />
+          <audio ref={audioRef} preload="metadata" />
 
           <div className="player-top">
-
             <div className="player-track-info">
+              <span className="player-label">ACUM ASCULȚI</span>
 
-              <span className="player-label">
-                ACUM ASCULȚI
-              </span>
+              <strong>{currentTrack.title}</strong>
 
-              <strong>
-                {currentTrack.title}
-              </strong>
-
-              <span>
-                {currentTrack.albumTitle}
-              </span>
-
+              <span>{currentTrack.albumTitle}</span>
             </div>
 
             <div className="player-controls">
-
               <button
                 type="button"
                 onClick={playPrevious}
@@ -396,11 +306,7 @@ const Music = () => {
                 type="button"
                 className="player-main-button"
                 onClick={togglePlay}
-                aria-label={
-                  isPlaying
-                    ? "Pauză"
-                    : "Redare"
-                }
+                aria-label={isPlaying ? "Pauză" : "Redare"}
               >
                 {isPlaying ? "Ⅱ" : "▶"}
               </button>
@@ -408,24 +314,16 @@ const Music = () => {
               <button
                 type="button"
                 onClick={playNext}
-                disabled={
-                  currentTrackIndex ===
-                  allTracks.length - 1
-                }
+                disabled={currentTrackIndex === allTracks.length - 1}
                 aria-label="Piesa următoare"
               >
                 ›
               </button>
-
             </div>
-
           </div>
 
           <div className="player-progress">
-
-            <span>
-              {formatTime(currentTime)}
-            </span>
+            <span>{formatTime(currentTime)}</span>
 
             <input
               type="range"
@@ -437,14 +335,9 @@ const Music = () => {
               aria-label="Progres piesă"
             />
 
-            <span>
-              {formatTime(duration)}
-            </span>
-
+            <span>{formatTime(duration)}</span>
           </div>
-
         </div>
-
       </div>
     </section>
   );

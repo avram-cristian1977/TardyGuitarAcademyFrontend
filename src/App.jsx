@@ -22,8 +22,6 @@ import Music from "./components/Music";
 import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
-  
-
   const websiteContent = {
     academy: academyContent,
     about: aboutContent,
@@ -35,7 +33,6 @@ const App = () => {
     faq: faqContent,
   };
 
-
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth",
@@ -45,9 +42,7 @@ const App = () => {
   const parseSections = (text) => {
     if (!text) return [];
 
-    const lines = text
-      .split("\n")
-      .map((line) => line.trim());
+    const lines = text.split("\n").map((line) => line.trim());
 
     const sections = [];
 
@@ -57,9 +52,7 @@ const App = () => {
       if (!line) return;
 
       const isHeading =
-        line === line.toUpperCase() &&
-        line.length > 3 &&
-        !line.startsWith("-");
+        line === line.toUpperCase() && line.length > 3 && !line.startsWith("-");
 
       if (isHeading) {
         if (currentSection) {
@@ -84,9 +77,7 @@ const App = () => {
       }
 
       if (line.startsWith("-")) {
-        currentSection.items.push(
-          line.replace(/^-\s*/, "")
-        );
+        currentSection.items.push(line.replace(/^-\s*/, ""));
       } else {
         currentSection.paragraphs.push(line);
       }
@@ -100,125 +91,71 @@ const App = () => {
   };
 
   const formatHeading = (heading) => {
-    const text = heading
-      .toLowerCase()
-      .trim();
+    const text = heading.toLowerCase().trim();
 
     if (!text) return "";
 
-    return (
-      text.charAt(0).toUpperCase() +
-      text.slice(1)
-    );
+    return text.charAt(0).toUpperCase() + text.slice(1);
   };
 
   const formatTestimonialHeading = (heading) => {
     return heading
       .toLowerCase()
       .trim()
-      .replace(/\b\w/g, (char) =>
-        char.toUpperCase()
-      );
+      .replace(/\b\w/g, (char) => char.toUpperCase());
   };
-
 
   const renderWhyTga = (section) => {
     return (
       <div className="why-tga">
         <div className="why-tga-grid">
-
           {section.items.map((item, index) => (
-            <div
-              className="why-tga-card"
-              key={index}
-            >
-              <div className="why-tga-icon">
-                ✓
-              </div>
+            <div className="why-tga-card" key={index}>
+              <div className="why-tga-icon">✓</div>
 
-              <p>
-                {item}
-              </p>
+              <p>{item}</p>
             </div>
           ))}
-
         </div>
       </div>
     );
   };
 
-  const renderGenericSection = (
-    section,
-    index
-  ) => {
+  const renderGenericSection = (section, index) => {
     return (
-      <article
-        className="content-block"
-        key={index}
-      >
+      <article className="content-block" key={index}>
+        {section.title && <h3>{formatHeading(section.title)}</h3>}
 
-        {section.title && (
-          <h3>
-            {formatHeading(section.title)}
-          </h3>
-        )}
-
-        {section.paragraphs.map(
-          (paragraph, paragraphIndex) => (
-            <p key={paragraphIndex}>
-              {paragraph}
-            </p>
-          )
-        )}
+        {section.paragraphs.map((paragraph, paragraphIndex) => (
+          <p key={paragraphIndex}>{paragraph}</p>
+        ))}
 
         {section.items.length > 0 && (
           <ul>
-            {section.items.map(
-              (item, itemIndex) => (
-                <li key={itemIndex}>
-                  {item}
-                </li>
-              )
-            )}
+            {section.items.map((item, itemIndex) => (
+              <li key={itemIndex}>{item}</li>
+            ))}
           </ul>
         )}
-
       </article>
     );
   };
 
+  const academySections = parseSections(websiteContent?.academy || "");
 
-  const academySections = parseSections(
-    websiteContent?.academy || ""
-  );
+  const aboutSections = parseSections(websiteContent?.about || "");
 
-  const aboutSections = parseSections(
-    websiteContent?.about || ""
-  );
+  const lessonSections = parseSections(websiteContent?.lessons || "");
 
-  const lessonSections = parseSections(
-    websiteContent?.lessons || ""
-  );
+  const methodSections = parseSections(websiteContent?.method || "");
 
-  const methodSections = parseSections(
-    websiteContent?.method || ""
-  );
+  const journeySections = parseSections(websiteContent?.journey || "");
 
-  const journeySections = parseSections(
-    websiteContent?.journey || ""
-  );
+  const testimonialSections = parseSections(websiteContent?.testimonials || "");
 
-  const testimonialSections = parseSections(
-    websiteContent?.testimonials || ""
-  );
+  const pricingSections = parseSections(websiteContent?.pricing || "");
 
-  const pricingSections = parseSections(
-    websiteContent?.pricing || ""
-  );
-
-  const faqSections = parseSections(
-    websiteContent?.faq || ""
-  );
+  const faqSections = parseSections(websiteContent?.faq || "");
 
   const academyStats = [
     {
@@ -239,41 +176,34 @@ const App = () => {
     },
   ];
 
-return (
-  <div className="site">
-    <Navbar scrollTo={scrollTo} />
-    <Hero scrollTo={scrollTo} />
-    <Academy
-      academySections={academySections}
-      academyStats={academyStats}
-      renderWhyTga={renderWhyTga}
-      renderGenericSection={renderGenericSection}
-    />
-    <AboutTeacher aboutSections={aboutSections} />
-    <Music />
-    <Lessons lessonSections={lessonSections} />
-    <Method
-      methodSections={methodSections}
-      formatHeading={formatHeading}
-    />
-    <Journey
-      journeySections={journeySections}
-      formatHeading={formatHeading}
-    />
-    <Testimonials
-      testimonialSections={testimonialSections}
-      formatTestimonialHeading={formatTestimonialHeading}
-    />
-    <Pricing pricingSections={pricingSections} />
-    <FAQ
-      faqSections={faqSections}
-      formatHeading={formatHeading}
-    />
-    <Footer />
-    <ScrollToTop />
-  </div>
-);
-}
+  return (
+    <div className="site">
+      <Navbar scrollTo={scrollTo} />
+      <Hero scrollTo={scrollTo} />
+      <Academy
+        academySections={academySections}
+        academyStats={academyStats}
+        renderWhyTga={renderWhyTga}
+        renderGenericSection={renderGenericSection}
+      />
+      <AboutTeacher aboutSections={aboutSections} />
+      <Music />
+      <Lessons lessonSections={lessonSections} />
+      <Method methodSections={methodSections} formatHeading={formatHeading} />
+      <Journey
+        journeySections={journeySections}
+        formatHeading={formatHeading}
+      />
+      <Testimonials
+        testimonialSections={testimonialSections}
+        formatTestimonialHeading={formatTestimonialHeading}
+      />
+      <Pricing pricingSections={pricingSections} />
+      <FAQ faqSections={faqSections} formatHeading={formatHeading} />
+      <Footer />
+      <ScrollToTop />
+    </div>
+  );
+};
 
 export default App;
-
