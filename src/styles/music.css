@@ -1,0 +1,428 @@
+.music-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.music-header {
+  max-width: 720px;
+  margin-bottom: 70px;
+}
+
+.music-header h2 {
+  margin: 0 0 20px;
+}
+
+.music-header p:last-child {
+  max-width: 620px;
+  line-height: 1.8;
+  opacity: 0.75;
+}
+
+/* =========================================
+   ALBUMS
+========================================= */
+
+.albums-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.album-card {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 45px;
+
+  padding: 35px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.album-cover {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.album-cover img {
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.5s ease;
+}
+
+.album-card:hover .album-cover img {
+  transform: scale(1.03);
+}
+
+.album-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================
+   ALBUM HEADER
+========================================= */
+
+.album-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+
+  margin-bottom: 35px;
+}
+
+.album-number {
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  opacity: 0.45;
+
+  padding-top: 8px;
+}
+
+.album-heading h3 {
+  margin: 0 0 7px;
+
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.album-heading p {
+  margin: 0;
+
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  opacity: 0.5;
+}
+
+/* =========================================
+   TRACKS
+========================================= */
+
+.track-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.track-item {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 35px 35px 1fr;
+  align-items: center;
+
+  padding: 17px 10px;
+
+  border: 0;
+  border-top: 1px solid
+    rgba(255, 255, 255, 0.08);
+
+  background: transparent;
+
+  color: inherit;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    padding 0.2s ease;
+}
+
+.track-item:last-child {
+  border-bottom: 1px solid
+    rgba(255, 255, 255, 0.08);
+}
+
+.track-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  padding-left: 15px;
+}
+
+.track-item.active {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.track-index {
+  font-size: 11px;
+  opacity: 0.35;
+}
+
+.track-play {
+  width: 25px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+.track-item.active .track-play {
+  opacity: 1;
+}
+
+/* Equalizer */
+
+.track-play span {
+  width: 2px;
+  margin: 0 1.5px;
+
+  background: currentColor;
+
+  animation:
+    musicBars 0.8s ease-in-out infinite
+    alternate;
+}
+
+.track-play span:nth-child(1) {
+  height: 7px;
+  animation-delay: -0.2s;
+}
+
+.track-play span:nth-child(2) {
+  height: 13px;
+}
+
+.track-play span:nth-child(3) {
+  height: 9px;
+  animation-delay: -0.4s;
+}
+
+@keyframes musicBars {
+  from {
+    transform: scaleY(0.5);
+  }
+
+  to {
+    transform: scaleY(1.2);
+  }
+}
+
+.track-title {
+  font-size: 15px;
+  letter-spacing: 0.01em;
+}
+
+/* =========================================
+   PLAYER
+========================================= */
+
+.music-player {
+  margin-top: 50px;
+
+  padding: 30px 35px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.12);
+
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.player-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+.player-track-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.player-label {
+  margin-bottom: 4px;
+
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  opacity: 0.4;
+}
+
+.player-track-info strong {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.player-track-info span:last-child {
+  font-size: 12px;
+  opacity: 0.45;
+}
+
+/* =========================================
+   PLAYER CONTROLS
+========================================= */
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.player-controls button {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.15);
+
+  border-radius: 50%;
+
+  background: transparent;
+  color: inherit;
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  transition:
+    background 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.player-controls button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.player-controls button:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.player-controls .player-main-button {
+  width: 50px;
+  height: 50px;
+
+  border-color: rgba(255, 255, 255, 0.3);
+
+  font-size: 14px;
+}
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+.player-progress {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 25px;
+}
+
+.player-progress span {
+  font-size: 10px;
+  opacity: 0.4;
+}
+
+.player-progress span:last-child {
+  text-align: right;
+}
+
+.player-progress input {
+  width: 100%;
+  height: 3px;
+
+  appearance: none;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  cursor: pointer;
+}
+
+.player-progress input::-webkit-slider-thumb {
+  appearance: none;
+
+  width: 11px;
+  height: 11px;
+
+  border-radius: 50%;
+  border: 0;
+
+  background: currentColor;
+}
+
+.player-progress input::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+
+  border-radius: 50%;
+  border: 0;
+
+  background: currentColor;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .album-card {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 25px;
+  }
+
+  .album-cover {
+    max-width: 360px;
+  }
+
+  .music-header {
+    margin-bottom: 45px;
+  }
+
+  .player-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .player-controls {
+    align-self: center;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .album-card {
+    padding: 18px;
+  }
+
+  .album-heading h3 {
+    font-size: 26px;
+  }
+
+  .track-item {
+    grid-template-columns: 28px 30px 1fr;
+    padding: 15px 5px;
+  }
+
+  .track-title {
+    font-size: 14px;
+  }
+
+  .music-player {
+    padding: 25px 20px;
+  }
+
+}

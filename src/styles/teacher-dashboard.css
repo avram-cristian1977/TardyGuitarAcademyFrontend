@@ -1,0 +1,93 @@
+.teacher-dashboard {
+  min-height: 100vh;
+  padding: 20px 60px 60px;
+  background: #f7f7f7;
+}
+
+.teacher-dashboard h1 {
+  margin-bottom: 30px;
+  color: #222;
+  font-size: 32px;
+}
+
+.teacher-dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.teacher-dashboard th,
+.teacher-dashboard td {
+  padding: 16px 18px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.teacher-dashboard th {
+  background: #0a7565;
+  color: white;
+  font-weight: 600;
+}
+
+.teacher-dashboard tbody tr:hover {
+  background: #f5faf9;
+}
+
+.teacher-dashboard tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.teacher-dashboard td {
+  color: #444;
+}
+
+.teacher-dashboard p {
+  color: #555;
+  font-size: 16px;
+}
+
+.lesson-status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.lesson-status.available {
+  background: #dff5ed;
+  color: #0a7565;
+}
+
+.lesson-status.not-available {
+  background: #fce4e4;
+  color: #b42318;
+}
+
+@media (max-width: 768px) {
+  .teacher-dashboard {
+    padding: 40px 20px 40px;
+  }
+
+  .teacher-dashboard h1 {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  .teacher-dashboard {
+    overflow-x: auto;
+  }
+
+  .teacher-dashboard table {
+    min-width: 700px;
+  }
+
+  .teacher-dashboard th,
+  .teacher-dashboard td {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+}

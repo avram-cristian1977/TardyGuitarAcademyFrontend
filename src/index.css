@@ -1,0 +1,17 @@
+@import "./styles/variables.css";
+@import "./styles/global.css";
+@import "./styles/navbar.css";
+@import "./styles/hero.css";
+@import "./styles/sections.css";
+@import "./styles/about-teacher.css";
+@import "./styles/lessons.css";
+@import "./styles/method.css";
+@import "./styles/journey.css";
+@import "./styles/testimonials.css";
+@import "./styles/pricing.css";
+@import "./styles/faq.css";
+@import "./styles/footer.css";
+@import "./styles/chat.css";
+@import "./styles/music.css";
+@import "./styles/teacher-dashboard.css";
+@import "./styles/scroll-to-top.css";

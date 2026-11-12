@@ -1,0 +1,187 @@
+/* =========================================================
+   JOURNEY
+   ========================================================= */
+
+.journey-grid {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 24px;
+
+  margin-top: 56px;
+}
+
+.journey-grid::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+
+  top: 32px;
+
+  bottom: 32px;
+
+  width: 1px;
+
+  background: var(--teal);
+
+  opacity: 0.25;
+
+  transform: translateX(-50%);
+}
+
+.journey-card {
+  position: relative;
+
+  display: flex;
+
+  gap: 24px;
+
+  padding: 32px;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(57, 73, 82, 0.10);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 10px 30px rgba(57, 73, 82, 0.06);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.journey-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 18px 40px rgba(57, 73, 82, 0.10);
+}
+
+.journey-number {
+  flex-shrink: 0;
+
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--teal);
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+}
+
+.journey-card-content {
+  flex: 1;
+}
+
+.journey-card h3 {
+  margin: 0 0 14px;
+
+  font-size: 22px;
+
+  line-height: 1.25;
+
+  color: var(--dark);
+}
+
+.journey-card p {
+  margin: 0 0 12px;
+
+  font-size: 15px;
+
+  line-height: 1.75;
+
+  color: #66737a;
+}
+
+.journey-card p:last-child {
+  margin-bottom: 0;
+}
+
+.journey-items {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 20px;
+}
+
+.journey-item {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 7px 12px;
+
+  border-radius: 999px;
+
+  background: var(--teal-light);
+
+  color: var(--teal-dark);
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .journey-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .journey-grid::before {
+    display: none;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .journey-card {
+    padding: 24px;
+
+    gap: 18px;
+  }
+
+  .journey-number {
+    width: 44px;
+    height: 44px;
+
+    font-size: 12px;
+  }
+
+  .journey-card h3 {
+    font-size: 19px;
+  }
+
+  .journey-card p {
+    font-size: 14px;
+  }
+
+}

@@ -1,0 +1,297 @@
+/* =========================================================
+   CHAT
+   ========================================================= */
+
+.chat-button {
+  position: fixed;
+
+  right: 28px;
+  bottom: 28px;
+
+  z-index: 2000;
+
+  width: 62px;
+  height: 62px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: var(--teal);
+
+  color: white;
+
+  font-size: 25px;
+
+  box-shadow:
+    0 12px 30px rgba(47, 140, 123, 0.28);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.chat-button:hover {
+  background: var(--teal-dark);
+
+  transform: translateY(-3px) scale(1.03);
+}
+
+.chat-widget {
+  position: fixed;
+
+  right: 28px;
+  bottom: 28px;
+
+  z-index: 2000;
+
+  width: 390px;
+  height: 560px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background: white;
+
+  border: 1px solid var(--border);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 25px 70px rgba(45, 58, 65, 0.22);
+}
+
+.chat-widget-header {
+  min-height: 72px;
+
+  padding: 16px 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  background: var(--dark-deep);
+
+  color: white;
+}
+
+.chat-widget-header div {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.chat-widget-header strong {
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.chat-widget-header span {
+  margin-top: 2px;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 11px;
+}
+
+.chat-close {
+  width: 34px;
+  height: 34px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: white;
+
+  font-size: 22px;
+
+  line-height: 1;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.chat-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+
+  transform: rotate(90deg);
+}
+
+.messages {
+  flex: 1;
+
+  padding: 20px;
+
+  overflow-y: auto;
+
+  background: #f8faf9;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.message {
+  max-width: 82%;
+
+  padding: 11px 14px;
+
+  border-radius: 12px;
+
+  font-size: 13px;
+
+  line-height: 1.55;
+
+  white-space: pre-wrap;
+}
+
+.message.assistant {
+  align-self: flex-start;
+
+  background: white;
+
+  border: 1px solid var(--border);
+
+  color: var(--dark);
+
+  border-bottom-left-radius: 4px;
+}
+
+.message.user {
+  align-self: flex-end;
+
+  background: var(--teal);
+
+  color: white;
+
+  border-bottom-right-radius: 4px;
+}
+
+.input-area {
+  padding: 12px;
+
+  display: flex;
+
+  gap: 8px;
+
+  background: white;
+
+  border-top: 1px solid var(--border);
+}
+
+.input-area input {
+  min-width: 0;
+
+  flex: 1;
+
+  height: 44px;
+
+  padding: 0 13px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 8px;
+
+  outline: none;
+
+  color: var(--dark);
+
+  background: #fafcfb;
+
+  font-size: 13px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.input-area input:focus {
+  border-color: var(--teal);
+
+  box-shadow:
+    0 0 0 3px rgba(47, 140, 123, 0.10);
+}
+
+.input-area button {
+  width: 44px;
+  height: 44px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: var(--teal);
+
+  color: white;
+
+  font-size: 18px;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.input-area button:hover:not(:disabled) {
+  background: var(--teal-dark);
+
+  transform: translateY(-1px);
+}
+
+.input-area button:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+.messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: #cbd8d4;
+
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+  .chat-widget {
+    right: 14px;
+
+    bottom: 14px;
+
+    width: calc(100vw - 28px);
+
+    height: min(600px, calc(100vh - 28px));
+
+    border-radius: 16px;
+  }
+
+  .chat-button {
+    right: 20px;
+
+    bottom: 20px;
+  }
+
+}
