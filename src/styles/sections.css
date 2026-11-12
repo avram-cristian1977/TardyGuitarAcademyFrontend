@@ -25,7 +25,7 @@
    ========================================================= */
 
 .about-section {
-  background: var(--light);
+  background: #2f8c7b4a;
 }
 
 .about-section .section-inner {
@@ -37,7 +37,6 @@
 }
 
 .about-section h2 {
-
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -102,7 +101,6 @@
   color: var(--muted);
 
   font-size: 16px;
-  line-height: 1.8;
 }
 
 .content-block p:last-of-type {
@@ -153,7 +151,7 @@
 .content-sections.dark .content-block {
   background: rgba(255, 255, 255, 0.045);
 
-  border-color: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.1);
 
   box-shadow: none;
 }
@@ -161,7 +159,7 @@
 .content-sections.dark .content-block:hover {
   background: rgba(47, 140, 123, 0.08);
 
-  border-color: rgba(105, 185, 169, 0.30);
+  border-color: rgba(105, 185, 169, 0.3);
 }
 
 .content-sections.dark .content-block h3 {
@@ -195,9 +193,9 @@
   gap: 14px;
 }
 
-#academy .content-block p {
+/* #academy .content-block p {
   margin-bottom: 6px;
-}
+} */
 
 /* =========================================================
    ACADEMY STATS
@@ -257,7 +255,6 @@
   font-size: 13px;
   line-height: 1.5;
 }
-
 
 /* =========================================================
    WHY TGA
@@ -346,7 +343,7 @@
 
   background: rgba(255, 255, 255, 0.045);
 
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   border-radius: var(--radius-md);
 
@@ -359,7 +356,7 @@
 .info-card:hover {
   transform: translateY(-5px);
 
-  background: rgba(47, 140, 123, 0.10);
+  background: rgba(47, 140, 123, 0.1);
 
   border-color: rgba(105, 185, 169, 0.35);
 }
@@ -381,7 +378,6 @@
 
   line-height: 1.75;
 }
-
 
 /* =========================================================
    METHOD POINTS
@@ -426,21 +422,17 @@
   color: var(--teal);
 }
 
-
 /* =========================================================
    RESPONSIVE
    ========================================================= */
 
 @media (max-width: 1000px) {
-
   .cards-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
 }
 
 @media (max-width: 760px) {
-
   .cards-grid,
   .method-points {
     grid-template-columns: 1fr;
@@ -454,7 +446,6 @@
   .info-card {
     min-height: auto;
   }
-
 }
 
 @media (max-width: 1000px) {
