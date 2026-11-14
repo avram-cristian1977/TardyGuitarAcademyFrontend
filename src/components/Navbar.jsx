@@ -34,7 +34,15 @@ const Navbar = ({ scrollTo }) => {
           <button onClick={() => handleNavigation("journey")}>Parcurs</button>
           <button onClick={() => handleNavigation("pricing")}>Prețuri</button>
           <button onClick={() => handleNavigation("about")}>Despre</button>
-          <button onClick={() => handleNavigation("contact")}>Contact</button>
+          <button
+            onClick={() => {
+              document.getElementById("footer")?.scrollIntoView({
+                behavior: "smooth",
+              });
+            }}
+          >
+            Contact
+          </button>
         </nav>
       </div>
     </header>
